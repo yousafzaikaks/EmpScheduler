@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpScheduler", "EmpScheduler.csproj", "{70CEEEE6-5EA0-4E28-A318-835994EF8FCB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{70CEEEE6-5EA0-4E28-A318-835994EF8FCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70CEEEE6-5EA0-4E28-A318-835994EF8FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70CEEEE6-5EA0-4E28-A318-835994EF8FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70CEEEE6-5EA0-4E28-A318-835994EF8FCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB0EA949-71CE-44F6-A75D-F8A2DBCDCE6D}
+	EndGlobalSection
+EndGlobal
