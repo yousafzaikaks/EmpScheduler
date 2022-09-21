@@ -44,7 +44,7 @@ namespace EmpSchedule.BusinessLogic
             var shifts = GetEmployeeShifts();
             foreach (var empShift in shifts.GroupBy(x => x.EmpId))
             {
-                var shift = empShift.Where(x => x.ShiftType == "Chat Shift").FirstOrDefault();
+                var shift = empShift.Where(x => x.ShiftType == "Chat Shift" || x.ShiftType == "Call Shift").FirstOrDefault();
                 //checking for exceeding limits of slots
                 foreach (var con in shifts)
                 {
@@ -73,19 +73,19 @@ namespace EmpSchedule.BusinessLogic
                 foreach (var empShift in shifts.GroupBy(x => x.EmpId))
                 {
                     counter = 0;
-                    var shift = empShift.Where(x => x.ShiftType == "Chat Shift").FirstOrDefault();
+                    var shift = empShift.Where(x => x.ShiftType == "Chat Shift" || x.ShiftType == "Call Shift").FirstOrDefault();
                     
                     //check for a full day leave
 
 
-                    foreach (var item in empShift.Where(x => x.ShiftType != "Chat Shift").OrderBy(x=> x.ShiftFrom))
+                    foreach (var item in empShift.Where(x => x.ShiftType != "Chat Shift" && x.ShiftType != "Call Shift").OrderBy(x=> x.ShiftFrom))
                     {
                         if (counter == 0)
                         {
                             singleSlot = new ShiftSlots();
                             singleSlot.EmpId = item.EmpId;
                             singleSlot.EmpName = item.EmpName;
-                            singleSlot.SlotName = "Chat Shift";
+                            singleSlot.SlotName = shift.ShiftType;
                             singleSlot.SlotFrom = shift.ShiftFrom;
                             singleSlot.SlotTo = item.ShiftFrom;
                             singleSlot.ShiftDate = item.ShiftDate;
@@ -113,7 +113,7 @@ namespace EmpSchedule.BusinessLogic
                                 singleSlot = new ShiftSlots();
                                 singleSlot.EmpId = item.EmpId;
                                 singleSlot.EmpName = item.EmpName;
-                                singleSlot.SlotName = "Chat Shift";
+                                singleSlot.SlotName = shift.ShiftType;
                                 singleSlot.SlotFrom = LastTo;
                                 singleSlot.SlotTo = shift.ShiftTo;
                                 singleSlot.ShiftDate = item.ShiftDate;
@@ -126,7 +126,7 @@ namespace EmpSchedule.BusinessLogic
                             singleSlot = new ShiftSlots();
                             singleSlot.EmpId = item.EmpId;
                             singleSlot.EmpName = item.EmpName;
-                            singleSlot.SlotName = "Chat Shift";
+                            singleSlot.SlotName = shift.ShiftType;
                             singleSlot.SlotFrom = LastTo;
                             singleSlot.SlotTo = item.ShiftFrom;
                             singleSlot.ShiftDate = item.ShiftDate;
@@ -155,7 +155,7 @@ namespace EmpSchedule.BusinessLogic
                                 singleSlot = new ShiftSlots();
                                 singleSlot.EmpId = item.EmpId;
                                 singleSlot.EmpName = item.EmpName;
-                                singleSlot.SlotName = "Chat Shift";
+                                singleSlot.SlotName = shift.ShiftType;
                                 singleSlot.SlotFrom = LastTo;
                                 singleSlot.SlotTo = shift.ShiftTo;
                                 singleSlot.ShiftDate = item.ShiftDate;
@@ -177,16 +177,6 @@ namespace EmpSchedule.BusinessLogic
             }
         }
 
-        public static ShiftSlots AddSlots(BLEmployeesSchedule slot)
-        {
-            var singleSlot = new ShiftSlots();
-            singleSlot.EmpId = slot.EmpId;
-            singleSlot.SlotName = "Chat Shift";
-            singleSlot.SlotFrom = slot.ShiftFrom;
-            singleSlot.SlotTo = slot.ShiftFrom;
-            singleSlot.ShiftDate = slot.ShiftDate;
-            return singleSlot;
-        }
     }
     public partial class ShiftSlots
     {
